@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {View, Text, StyleSheet, Button, Image} from 'react-native';
+import {View, Text, StyleSheet, Button, Image, Dimensions, ScrollView} from 'react-native';
 
 import DefaultStyles from '../constants/default-styles';
 import Colors from '../constants/colors';
@@ -7,6 +7,7 @@ import MainButton from '../components/MainButton';
 
 const GameOverScreen = props => {
     return (
+        <ScrollView>
         <View style={styles.screen}>
             <Text style={DefaultStyles.title}>The Game is Over!</Text>
             <View style={styles.imageContainer}>
@@ -27,6 +28,7 @@ const GameOverScreen = props => {
             <Text style={DefaultStyles.bodyText}>Number was: {props.userNumber}</Text> */}
             <MainButton onPress={props.onRestart}>NEW GAME</MainButton>
         </View>
+        </ScrollView>
     )
 };
 
@@ -34,16 +36,17 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 10
     },
     imageContainer: {
-        width: 300,
-        height: 300,
-        borderRadius: 150,
+        width: Dimensions.get('window').width * 0.7,
+        height: Dimensions.get('window').width * 0.7,
+        borderRadius: Dimensions.get('window').width * 0.7 / 2,
         borderWidth: 3,
         borderColor: 'black',
         overflow: 'hidden',
-        marginVertical: 30
+        marginVertical: Dimensions.get('window').height / 30
     },
     image: {
         width: '100%',
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     },
     resultContainer: {
         margin: 30,
-        marginVertical: 15
+        marginVertical: Dimensions.get('window').height / 60
     }
 });
 
